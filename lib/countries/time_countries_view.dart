@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:world_time/countries/cubit/time_countries_cubit.dart';
 import 'package:world_time/countries/time_countries_data.dart';
+import 'package:world_time/selected_country/single_country_view.dart';
 import 'package:world_time/theme/cubit/app_theme_cubit.dart';
 
 class CountriesView extends StatefulWidget {
@@ -77,7 +78,15 @@ class _CountriesViewState extends State<CountriesView> {
                               children: List.generate(state.response.length, (index) {
                                 return GestureDetector(
                                   //Navigator
-                                  onTap: () {},
+
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (blocContext) => SingleCountryView(
+                                        countryName: state.response[index].toString(),
+                                      ),
+                                    ),
+                                  ),
                                   child: Center(
                                     child: Stack(
                                       children: [
