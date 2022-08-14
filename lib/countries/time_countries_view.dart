@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:world_time/countries/cubit/time_countries_cubit.dart';
 import 'package:world_time/countries/time_countries_data.dart';
+import 'package:world_time/theme/cubit/app_theme_cubit.dart';
 
 class CountriesView extends StatefulWidget {
   CountriesView({Key? key}) : super(key: key);
@@ -45,16 +46,15 @@ class _CountriesViewState extends State<CountriesView> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: false);
     return MultiBlocProvider(providers: [
       BlocProvider(
         create: (context) => CountriesCubit(ClockCountryData()),
       ),
-    ], child: scaffold(context));
+    ], child: scaffold(context, theme));
   }
 
-  Scaffold scaffold(
-    BuildContext context,
-  ) {
+  Scaffold scaffold(BuildContext context, ThemeCubit theme) {
     return Scaffold(
       body: Stack(
         children: [
@@ -197,14 +197,16 @@ class _CountriesViewState extends State<CountriesView> {
                                   color: Theme.of(context).buttonColor,
                                 ),
                                 child: IconButton(
-                                    alignment: Alignment.center,
-                                    onPressed: () {
-                                      //BlocProvider.of<AppThemeModeCubit>(context).changeTheme();
-                                    },
-                                    icon: Icon(
-                                      Icons.dark_mode_outlined,
-                                      color: Theme.of(context).cardColor,
-                                    )),
+                                  alignment: Alignment.center,
+                                  onPressed: () {
+                                    theme.changeTheme();
+                                    //BlocProvider.of<AppThemeModeCubit>(context).changeTheme();
+                                  },
+                                  icon: Icon(
+                                    !theme.isDark ? Icons.sunny : Icons.dark_mode_outlined,
+                                    color: Theme.of(context).cardColor,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
