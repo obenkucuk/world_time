@@ -2,19 +2,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:world_time/countries/cubit/time_countries_cubit.dart';
-import 'package:world_time/countries/time_countries_data.dart';
+import 'package:world_time/home/cubit/home_cubit.dart';
+import 'package:world_time/home/home_data.dart';
 import 'package:world_time/selected_country/single_country_view.dart';
 import 'package:world_time/theme/cubit/app_theme_cubit.dart';
 
-class CountriesView extends StatefulWidget {
-  CountriesView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  HomeView({Key? key}) : super(key: key);
 
   @override
-  State<CountriesView> createState() => _CountriesViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _CountriesViewState extends State<CountriesView> {
+class _HomeViewState extends State<HomeView> {
   TextEditingController controller = TextEditingController();
 
   String timeParser(String dateTimeString, String type) {
@@ -161,11 +161,11 @@ class _CountriesViewState extends State<CountriesView> {
                     listener: (context, state) {},
                     builder: (context, state) {
                       return TextField(
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headline6,
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(0),
-                          hintStyle: TextStyle(color: Colors.black.withOpacity(0.4)),
+                          hintStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
                           filled: true,
                           fillColor: Colors.white,
                           prefixIcon: Icon(

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:world_time/countries/time_countries_data.dart';
+import 'package:world_time/home/home_data.dart';
 
-part 'time_countries_state.dart';
+part 'home_state.dart';
 
 class CountriesCubit extends Cubit<CountriesState> {
   final ClockCountryData _clockCountryData;

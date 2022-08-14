@@ -19,6 +19,10 @@ final lightTheme = ThemeData.light().copyWith(
       fontSize: 16,
       color: Color(0xFF002359),
     ),
+    headline6: TextStyle(
+      fontSize: 16,
+      color: Color(0xFF002359),
+    ),
   ),
   buttonColor: Color(0xFF002359),
   highlightColor: Color.fromARGB(255, 255, 255, 255),
@@ -45,6 +49,10 @@ final darkTheme = ThemeData.dark().copyWith(
     headline5: TextStyle(
       fontSize: 16,
       color: Color(0xFFe3eeff),
+    ),
+    headline6: TextStyle(
+      fontSize: 16,
+      color: Color(0xFF002359),
     ),
   ),
   buttonColor: Color(0xFFe3eeff),
