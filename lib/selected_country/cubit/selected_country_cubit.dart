@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:world_time/selected_country/cubit/single_country_repo.dart';
+import 'package:world_time/selected_country/cubit/selected_country_repo.dart';
 import 'package:world_time/selected_country/selected_country_data.dart';
 
 part 'selected_country_state.dart';
