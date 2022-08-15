@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final lightTheme = ThemeData.light().copyWith(
   backgroundColor: Colors.white,
@@ -6,20 +7,20 @@ final lightTheme = ThemeData.light().copyWith(
     color: Color(0xFFe3eeff),
     elevation: 0,
   ),
-  textTheme: const TextTheme(
-    headline2: TextStyle(
+  textTheme: TextTheme(
+    headline2: GoogleFonts.montserrat(
       fontSize: 40,
       color: Color(0xFF002359),
     ),
-    headline4: TextStyle(
+    headline4: GoogleFonts.montserrat(
       fontSize: 20,
       color: Color(0xFF002359),
     ),
-    headline5: TextStyle(
+    headline5: GoogleFonts.montserrat(
       fontSize: 16,
       color: Color(0xFF002359),
     ),
-    headline6: TextStyle(
+    headline6: GoogleFonts.montserrat(
       fontSize: 16,
       color: Color(0xFF002359),
     ),
@@ -37,20 +38,20 @@ final darkTheme = ThemeData.dark().copyWith(
     color: Color(0xFF02327D),
     elevation: 0,
   ),
-  textTheme: const TextTheme(
-    headline2: TextStyle(
+  textTheme: TextTheme(
+    headline2: GoogleFonts.montserrat(
       fontSize: 40,
       color: Color(0xFFe3eeff),
     ),
-    headline4: TextStyle(
+    headline4: GoogleFonts.montserrat(
       fontSize: 20,
       color: Color(0xFFe3eeff),
     ),
-    headline5: TextStyle(
+    headline5: GoogleFonts.montserrat(
       fontSize: 16,
       color: Color(0xFFe3eeff),
     ),
-    headline6: TextStyle(
+    headline6: GoogleFonts.montserrat(
       fontSize: 16,
       color: Color(0xFF002359),
     ),

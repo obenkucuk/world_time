@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:retry/retry.dart';
 
 class ClockCountryData {
   @override
@@ -10,7 +12,12 @@ class ClockCountryData {
       host: 'worldtimeapi.org',
       path: '/api/timezone/',
     );
-    final response = await http.get(baseUrl);
+    final response = await retry(
+      // Make a GET request
+      () => http.get(baseUrl).timeout(Duration(seconds: 5)),
+      // Retry on SocketException or TimeoutException
+      retryIf: (e) => e is SocketException || e is TimeoutException || e is HandshakeException,
+    );
 
     switch (response.statusCode) {
       case HttpStatus.ok:

@@ -183,7 +183,7 @@ class _SingleCountryViewState extends State<SingleCountryView> {
           transform: Matrix4.translationValues(-20.0, 20.0, 0.0),
           child: Text(
             title,
-            style: Theme.of(context).textTheme.headline4!.copyWith(fontWeight: FontWeight.w800),
+            style: Theme.of(context).textTheme.headline4!.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
       ),
