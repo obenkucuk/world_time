@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Brightness.dark == true);
     ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: true);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: !theme.isDark ? Colors.white : Colors.black,

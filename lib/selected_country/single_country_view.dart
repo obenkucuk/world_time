@@ -25,18 +25,29 @@ class _SingleCountryViewState extends State<SingleCountryView> {
     return clockString;
   }
 
+  late SelectedCountryCubit _selectedCountryCubit;
+  @override
+  void dispose() {
+    _selectedCountryCubit.cancelTimer();
+    _selectedCountryCubit.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _selectedCountryCubit = SelectedCountryCubit(widget.countryName, SelectedCountryData());
+
     return BlocProvider(
-      create: (context) => SelectedCountryCubit(widget.countryName, SelectedCountryData()),
+      create: (context) => _selectedCountryCubit,
       child: scaffold(),
     );
   }
 
   Scaffold scaffold() {
+    String title = "WORLD TIME";
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: AppBar(
           leading: Transform(
             transform: Matrix4.translationValues(20.0, 20.0, 20.0),
@@ -62,7 +73,7 @@ class _SingleCountryViewState extends State<SingleCountryView> {
             // you can forcefully translate values left side using Transform
             transform: Matrix4.translationValues(-20.0, 20.0, 0.0),
             child: Text(
-              "WORLD TIME",
+              title,
               style: Theme.of(context).textTheme.headline4!.copyWith(fontWeight: FontWeight.w800),
             ),
           ),
@@ -91,7 +102,7 @@ class _SingleCountryViewState extends State<SingleCountryView> {
                     children: [
                       Container(
                         child: Text(
-                          timeParser(state.response!.datetime.toString(), "HH"),
+                          state.response!.datetime.toString().substring(11, 13),
                           style: Theme.of(context)
                               .textTheme
                               .headline2!
@@ -118,7 +129,7 @@ class _SingleCountryViewState extends State<SingleCountryView> {
                         height: 150,
                         width: 150,
                         child: Text(
-                          timeParser(state.response!.datetime.toString(), "mm"),
+                          state.response!.datetime.toString().substring(14, 16),
                           style: Theme.of(context)
                               .textTheme
                               .headline2!
@@ -150,11 +161,9 @@ class _SingleCountryViewState extends State<SingleCountryView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        timeParser(state.response!.datetime.toString(), "EEEE") + ", GMT ",
-                        style: Theme.of(context).textTheme.headline4,
-                      ),
-                      Text(
-                        state.response!.utcOffset.toString(),
+                        timeParser(state.response!.datetime.toString(), "EEEE") +
+                            ", GMT " +
+                            state.response!.utcOffset.toString(),
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     ],
@@ -163,15 +172,7 @@ class _SingleCountryViewState extends State<SingleCountryView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        timeParser(state.response!.datetime.toString(), "MMM "),
-                        style: Theme.of(context).textTheme.headline4,
-                      ),
-                      Text(
-                        timeParser(state.response!.datetime.toString(), "dd, "),
-                        style: Theme.of(context).textTheme.headline4,
-                      ),
-                      Text(
-                        timeParser(state.response!.datetime.toString(), "yyyy"),
+                        timeParser(state.response!.datetime.toString(), "MMM dd, yyyy"),
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     ],

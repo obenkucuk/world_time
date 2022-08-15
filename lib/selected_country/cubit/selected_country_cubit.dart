@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:world_time/selected_country/cubit/single_country_repo.dart';
@@ -11,16 +13,30 @@ class SelectedCountryCubit extends Cubit<SelectedCountryState> {
   final SelectedCountryData _countryData;
 
   SelectedCountryCubit(this._selectedCountry, this._countryData) : super(SelectedCountryInitial()) {
-    getCountyNames();
+    getSelectedTimes();
   }
-
-  Future<void> getCountyNames() async {
+  Timer? timer;
+  Future<void> getSelectedTimes() async {
     try {
       emit(SelectedCountryLoading());
-      final countrys = await _countryData.getSingleCountries(_selectedCountry);
-      emit(SelectedCountryCompleted(countrys));
+
+      var countries = await _countryData.getSingleCountries(_selectedCountry);
+      print(countries!.datetime);
+
+      emit(SelectedCountryCompleted(countries));
+      timer = Timer.periodic(Duration(seconds: 20), (timer) async {
+        countries = await _countryData.getSingleCountries(_selectedCountry);
+
+        emit(SelectedCountryCompleted(countries));
+      });
     } catch (e) {
       emit(SelectedCountryError(e.toString() + "HATA MESAJI"));
+    }
+  }
+
+  void cancelTimer() {
+    if (timer != null) {
+      timer!.cancel();
     }
   }
 }
