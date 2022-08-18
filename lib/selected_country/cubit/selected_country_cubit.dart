@@ -21,7 +21,6 @@ class SelectedCountryCubit extends Cubit<SelectedCountryState> {
       emit(SelectedCountryLoading());
 
       var countries = await _countryData.getSingleCountries(_selectedCountry);
-      print(countries!.datetime);
 
       emit(SelectedCountryCompleted(countries));
       timer = Timer.periodic(Duration(seconds: 20), (timer) async {
