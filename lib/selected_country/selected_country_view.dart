@@ -50,7 +50,8 @@ class _SingleCountryViewState extends State<SingleCountryView> {
       body: BlocConsumer<SelectedCountryCubit, SelectedCountryState>(
         listener: (context, state) {
           if (state is SelectedCountryError) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            // Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            const CircularProgressIndicator.adaptive();
           }
         },
         builder: (context, state) {
