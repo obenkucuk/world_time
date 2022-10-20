@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:retry/retry.dart';
 
 class ClockCountryData {
-  @override
   Future<List> getCountries() async {
     final baseUrl = Uri(
       scheme: 'https',
@@ -14,7 +13,7 @@ class ClockCountryData {
     );
     final response = await retry(
       // Make a GET request
-      () => http.get(baseUrl).timeout(Duration(seconds: 5)),
+      () => http.get(baseUrl).timeout(const Duration(seconds: 5)),
       // Retry on SocketException or TimeoutException
       retryIf: (e) => e is SocketException || e is TimeoutException || e is HandshakeException,
     );

@@ -51,22 +51,22 @@ class SingleCountryRepo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['abbreviation'] = this.abbreviation;
-    data['client_ip'] = this.clientIp;
-    data['datetime'] = this.datetime;
-    data['day_of_week'] = this.dayOfWeek;
-    data['day_of_year'] = this.dayOfYear;
-    data['dst'] = this.dst;
-    data['dst_from'] = this.dstFrom;
-    data['dst_offset'] = this.dstOffset;
-    data['dst_until'] = this.dstUntil;
-    data['raw_offset'] = this.rawOffset;
-    data['timezone'] = this.timezone;
-    data['unixtime'] = this.unixtime;
-    data['utc_datetime'] = this.utcDatetime;
-    data['utc_offset'] = this.utcOffset;
-    data['week_number'] = this.weekNumber;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['abbreviation'] = abbreviation;
+    data['client_ip'] = clientIp;
+    data['datetime'] = datetime;
+    data['day_of_week'] = dayOfWeek;
+    data['day_of_year'] = dayOfYear;
+    data['dst'] = dst;
+    data['dst_from'] = dstFrom;
+    data['dst_offset'] = dstOffset;
+    data['dst_until'] = dstUntil;
+    data['raw_offset'] = rawOffset;
+    data['timezone'] = timezone;
+    data['unixtime'] = unixtime;
+    data['utc_datetime'] = utcDatetime;
+    data['utc_offset'] = utcOffset;
+    data['week_number'] = weekNumber;
     return data;
   }
 }

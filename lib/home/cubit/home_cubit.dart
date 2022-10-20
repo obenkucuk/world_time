@@ -21,7 +21,7 @@ class CountriesCubit extends Cubit<CountriesState> {
       countries = await _clockCountryData.getCountries();
       emit(CountriesCompleted(countries));
     } catch (e) {
-      emit(CountriesError(e.toString() + "HATA MESAJI"));
+      emit(CountriesError("${e}HATA MESAJI"));
     }
   }
 

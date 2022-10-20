@@ -10,7 +10,7 @@ import 'package:world_time/selected_country/selected_country_view.dart';
 import 'package:world_time/theme/cubit/app_theme_cubit.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
     DateTime now = DateTime.now();
 
     Timer.periodic(
-        Duration(seconds: 5),
+        const Duration(seconds: 5),
         (Timer t) => setState(() {
               now;
             }));
@@ -102,9 +102,7 @@ class _HomeViewState extends State<HomeView> {
                                         child: ListTile(
                                           title: Text(
                                             state.response[index].toString().split("/").length > 1
-                                                ? state.response[index].toString().split("/")[0] +
-                                                    ", " +
-                                                    state.response[index].toString().split("/")[1]
+                                                ? "${state.response[index].toString().split("/")[0]}, ${state.response[index].toString().split("/")[1]}"
                                                 : state.response[index].toString().split("/")[0],
                                             style: Theme.of(context).textTheme.headline5,
                                           ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +8,7 @@ import 'package:world_time/selected_country/selected_country_data.dart';
 
 class SingleCountryView extends StatefulWidget {
   final String countryName;
-  SingleCountryView({Key? key, required this.countryName}) : super(key: key);
+  const SingleCountryView({Key? key, required this.countryName}) : super(key: key);
 
   @override
   State<SingleCountryView> createState() => _SingleCountryViewState();
@@ -81,10 +80,6 @@ class _SingleCountryViewState extends State<SingleCountryView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: Text(
-                  state.response!.datetime.toString().substring(11, 13),
-                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 65, fontWeight: FontWeight.w700),
-                ),
                 alignment: Alignment.center,
                 height: 150,
                 width: 150,
@@ -92,6 +87,10 @@ class _SingleCountryViewState extends State<SingleCountryView> {
                   color: Theme.of(context).highlightColor,
                   border: Border.all(color: Theme.of(context).hoverColor, width: 2),
                   borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  state.response!.datetime.toString().substring(11, 13),
+                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 65, fontWeight: FontWeight.w700),
                 ),
               ),
               Container(
@@ -104,14 +103,14 @@ class _SingleCountryViewState extends State<SingleCountryView> {
                 alignment: Alignment.center,
                 height: 150,
                 width: 150,
-                child: Text(
-                  state.response!.datetime.toString().substring(14, 16),
-                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 65, fontWeight: FontWeight.w700),
-                ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).highlightColor,
                   border: Border.all(color: Theme.of(context).hoverColor, width: 2),
                   borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  state.response!.datetime.toString().substring(14, 16),
+                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 65, fontWeight: FontWeight.w700),
                 ),
               ),
             ],
@@ -134,9 +133,7 @@ class _SingleCountryViewState extends State<SingleCountryView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                timeParser(state.response!.datetime.toString(), "EEEE") +
-                    ", GMT " +
-                    state.response!.utcOffset.toString(),
+                "${timeParser(state.response!.datetime.toString(), "EEEE")}, GMT ${state.response!.utcOffset}",
                 style: Theme.of(context).textTheme.headline4,
               ),
             ],
